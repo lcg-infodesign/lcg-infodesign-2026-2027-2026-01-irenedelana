@@ -1,7 +1,7 @@
 let xMax = 400;
 let yMax = 600;
-let xSole = xMax/2;
-let ySole = yMax/2 -100;
+let xLuna = xMax/2;
+let yLuna = yMax/2 -100;
 
 function setup() {
   createCanvas(xMax, yMax);
@@ -10,10 +10,21 @@ function setup() {
 function draw() {
   background(45, 13, 67);
 
-  push(); //sole
-  fill(243, 167, 18);
+  push(); // stelle
+  randomSeed(100)
   noStroke();
-  circle(xSole, ySole, 250);
+  for(let i=0; i<271; i++){
+    let sx = (i*83) % width + i%3;
+    let sy = (i*229) % height + i%7;
+    fill(255, 255, 255, random(150, 255));
+    ellipse(sx, sy, random(1, 2.8));
+  }
+  pop();
+  
+  push(); //luna
+  fill(229, 228, 226);
+  noStroke();
+  circle(xLuna, yLuna, 250);
   pop();
 
   push();
@@ -42,8 +53,8 @@ function draw() {
   triangle(200, yMax, 250, 420, xMax + 100, yMax);
   pop();
 
-  ySole = ySole + 1; //animazione
-  if(ySole > yMax + 110){
-    ySole = -110
+  yLuna = yLuna - 1; //animazione
+  if(yLuna < -250){
+    yLuna = yMax
   }
 }
